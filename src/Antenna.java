@@ -4,6 +4,7 @@ public class Antenna {
     private int capacityLimit;
     private int activeComms;
 
+
     public Antenna(String location, double coverageRadius, int capacityLimit, int activeComms) {
         this.location = location;
         this.coverageRadius = coverageRadius;
@@ -41,5 +42,5 @@ public class Antenna {
 
     public void setActiveComms(int activeComms) {
         this.activeComms = activeComms;
-    }
+    }    
 }
