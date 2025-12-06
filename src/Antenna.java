@@ -42,4 +42,5 @@ public class Antenna {
     public void setActiveComms(int activeComms) {
         this.activeComms = activeComms;
     }
+    Mohammed bouadjadja;
 }
