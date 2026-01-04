@@ -1,10 +1,10 @@
 public class Phone {
     private int batteryLevel;
-    private String location;
+    private Point location;
     private SimCard simCard;
 
-    public Phone(String location, int batteryLevel, SimCard simCard) {
-        this.location = location;
+    public Phone(double x, double y, int batteryLevel, SimCard simCard) {
+        this.location = new Point(x, y);
         this.batteryLevel = batteryLevel;
         this.simCard = simCard;
     }
@@ -17,11 +17,11 @@ public class Phone {
         this.batteryLevel = batteryLevel;
     }
 
-    public String getLocation() {
+    public Point getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Point location) {
         this.location = location;
     }
 
@@ -31,5 +31,24 @@ public class Phone {
 
     public void setSimCard(SimCard simCard) {
         this.simCard = simCard;
+    }
+
+    public boolean canMakeCall(String currentLocation) {
+
+        if (batteryLevel == 0) {
+            return false;
+        }
+
+
+        if (this.simCard == null || !this.simCard.isActivated()) {
+            return false;
+        }
+
+
+        if (!simCard.checkCredit()) {
+            return false;
+        }
+
+        return true;
     }
 }

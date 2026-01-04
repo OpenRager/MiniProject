@@ -32,4 +32,19 @@ public class SimCard {
     public void setActivated(boolean activated) {
         isActivated = activated;
     }
+
+    public void deductCredit() {
+        if (creditBalance > 0) {
+            creditBalance =- 10; // Every call costs 10da
+        }
+        else
+            System.out.println("Credit balance is already depleted.");
+
+    }
+
+    public boolean checkCredit() {
+        return creditBalance > 10;
+    }
+
+
 }
