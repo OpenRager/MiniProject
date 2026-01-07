@@ -43,7 +43,8 @@ public class SimCard {
     }
 
     public boolean checkCredit() {
-        return creditBalance > 10;
+        // Require at least one unit of call cost available
+        return creditBalance >= 10;
     }
 
     @Override

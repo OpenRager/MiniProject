@@ -17,9 +17,25 @@ public class Network {
 
 
     public void addAntennas(Antenna newAntenna) {
+        // Reject duplicates (same location)
         for (Antenna antenna : antennas) {
             if (antenna.getLocation().distanceTo(newAntenna.getLocation()) == 0) {
                 System.out.println("This antenna already exists in the network. Cannot add duplicate antennas.");
+                return;
+            }
+        }
+
+        // Allow the first antenna to be added (bootstrap), otherwise require overlap with at least one existing antenna
+        if (!antennas.isEmpty()) {
+            boolean overlapsAny = false;
+            for (Antenna existing : antennas) {
+                if (overlaps(existing, newAntenna)) {
+                    overlapsAny = true;
+                    break;
+                }
+            }
+            if (!overlapsAny) {
+                System.out.println("Isolated antennas are not allowed. New antenna must overlap coverage with at least one existing antenna.");
                 return;
             }
         }
@@ -34,7 +50,8 @@ public class Network {
         double shortestDistance = Double.MAX_VALUE;
 
         for (Antenna antenna : antennas) {
-            if (antenna.phoneinRange(phone)) {
+            // Must be within coverage and have available capacity
+            if (antenna.phoneinRange(phone) && antenna.canAcceptNewCall()) {
                 double distance = antenna.getLocation().distanceTo(phone.getLocation());
                 if (distance < shortestDistance) {
                     shortestDistance = distance;
@@ -44,6 +61,14 @@ public class Network {
         }
 
         return nearestAntenna;
+    }
+
+    /**
+     * Returns true when two antennas' coverage areas overlap or touch.
+     */
+    private boolean overlaps(Antenna a1, Antenna a2) {
+        double centerDist = a1.getLocation().distanceTo(a2.getLocation());
+        return centerDist <= (a1.getCoverageRadius() + a2.getCoverageRadius());
     }
 
     @Override
