@@ -21,8 +21,14 @@ public class Phone {
         return location;
     }
 
-    public void setLocation(Point location) {
-        this.location = location;
+    public void setLocation(Point newLocation, Network network) {
+        this.location = newLocation;
+
+        // Handle automatic call disconnection if moved out of network range
+        Antenna nearestAntenna = network.findNearestAntenna(this);
+        if (nearestAntenna == null) {
+            System.out.println("Out of range. Call disconnected.");
+        }
     }
 
     public SimCard getSimCard() {
@@ -33,22 +39,61 @@ public class Phone {
         this.simCard = simCard;
     }
 
-    public boolean canMakeCall(String currentLocation) {
-
-        if (batteryLevel == 0) {
+    public boolean canAcceptNewCall(Network network) {
+        if (batteryLevel <= 0) {
             return false;
         }
 
-
-        if (this.simCard == null || !this.simCard.isActivated()) {
+        if (!simCard.isActivated()) {
             return false;
         }
-
 
         if (!simCard.checkCredit()) {
             return false;
         }
 
+        Antenna nearestAntenna = network.findNearestAntenna(this);
+        if (nearestAntenna == null) {
+            return false;
+        }
+
+        if (!nearestAntenna.canAcceptNewCall()) {
+            return false;
+        }
+
         return true;
+    }
+
+    public boolean makeCall(Network network) {
+        if (!canAcceptNewCall(network)) {
+            return false;
+        }
+
+        Antenna nearestAntenna = network.findNearestAntenna(this);
+        nearestAntenna.incrementActiveCalls();
+        simCard.deductCredit();
+        return true;
+    }
+
+    public boolean receiveCall(Network network) {
+        if (batteryLevel <= 0) {
+            return false;
+        }
+
+        Antenna nearestAntenna = network.findNearestAntenna(this);
+        if (nearestAntenna == null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "batteryLevel=" + batteryLevel +
+                ", location=" + location +
+                ", simCard=" + simCard +
+                '}';
     }
 }

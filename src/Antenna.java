@@ -1,4 +1,3 @@
-
 public class Antenna {
     private Point location;
     private double coverageRadius;
@@ -69,4 +68,13 @@ public class Antenna {
         return activeComms < capacityLimit;
     }
 
+    @Override
+    public String toString() {
+        return "Antenna{" +
+                "location=" + location +
+                ", coverageRadius=" + coverageRadius +
+                ", capacityLimit=" + capacityLimit +
+                ", activeComms=" + activeComms +
+                '}';
+    }
 }

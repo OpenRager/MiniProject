@@ -35,7 +35,7 @@ public class SimCard {
 
     public void deductCredit() {
         if (creditBalance > 0) {
-            creditBalance =- 10; // Every call costs 10da
+            creditBalance -= 10; // Every call costs 10da
         }
         else
             System.out.println("Credit balance is already depleted.");
@@ -46,5 +46,12 @@ public class SimCard {
         return creditBalance > 10;
     }
 
-
+    @Override
+    public String toString() {
+        return "SimCard{" +
+                "phoneNumber=" + phoneNumber +
+                ", creditBalance=" + creditBalance +
+                ", isActivated=" + isActivated +
+                '}';
+    }
 }

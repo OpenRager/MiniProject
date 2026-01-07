@@ -16,15 +16,16 @@ public class Network {
     }
 
 
-    public void addAntennas(Antenna a) {
-        for (Antenna existingAntenna : antennas) {
-            if (existingAntenna.getLocation().distanceTo(a.getLocation()) <= existingAntenna.getCoverageRadius()) {
-                antennas.add(a);
+    public void addAntennas(Antenna newAntenna) {
+        for (Antenna antenna : antennas) {
+            if (antenna.getLocation().distanceTo(newAntenna.getLocation()) == 0) {
+                System.out.println("This antenna already exists in the network. Cannot add duplicate antennas.");
+                return;
             }
         }
-        if (antennas.contains(a)) {
-            System.out.println("Antenna is already part of the network");
-        }
+
+        antennas.add(newAntenna);
+        System.out.println("Antenna added successfully at location: " + newAntenna.getLocation());
     }
 
 
@@ -33,16 +34,22 @@ public class Network {
         double shortestDistance = Double.MAX_VALUE;
 
         for (Antenna antenna : antennas) {
-            double distance = antenna.getLocation().distanceTo(phone.getLocation());
-            if (distance <= antenna.getCoverageRadius() && antenna.canAcceptNewCall() && distance < shortestDistance) {
-                nearestAntenna = antenna;
-                shortestDistance = distance;
+            if (antenna.phoneinRange(phone)) {
+                double distance = antenna.getLocation().distanceTo(phone.getLocation());
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    nearestAntenna = antenna;
+                }
             }
         }
 
-        return nearestAntenna; // Returns null if no antenna is found
+        return nearestAntenna;
+    }
+
+    @Override
+    public String toString() {
+        return "Network{" +
+                "antennas=" + antennas +
+                '}';
     }
 }
-
-
-
