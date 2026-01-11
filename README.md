@@ -102,10 +102,6 @@ src/
 - The network prevents isolated antennas (except the first to bootstrap)
 - Calls are capacity-aware and location-aware; moving calls attempt handoff
 
-## Team / Submission
-
-- Group Size: up to 6 students
-- Deadline: End of the first week of the January holidays
 
 ## Authors / Contributors
 
@@ -114,6 +110,4 @@ src/
 - Nidhal BECHNA
 - Abd El Bari ADJAL
 
-## License
 
-Educational project for coursework. No external dependencies.
