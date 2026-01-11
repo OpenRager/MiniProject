@@ -25,7 +25,7 @@ public class Network {
             }
         }
 
-        // Allow the first antenna to be added (bootstrap), otherwise require overlap with at least one existing antenna
+        // Allow the first antenna to be added
         if (!antennas.isEmpty()) {
             boolean overlapsAny = false;
             for (Antenna existing : antennas) {
@@ -63,12 +63,9 @@ public class Network {
         return nearestAntenna;
     }
 
-    /**
-     * Returns true when two antennas' coverage areas overlap or touch.
-     */
     private boolean overlaps(Antenna a1, Antenna a2) {
         double centerDist = a1.getLocation().distanceTo(a2.getLocation());
-        return centerDist <= (a1.getCoverageRadius() + a2.getCoverageRadius());
+        return centerDist <= (a1.getCoverageRadius() + a2.getCoverageRadius());  // Returns true when two antennas' coverage areas overlap or touch.
     }
 
     @Override
