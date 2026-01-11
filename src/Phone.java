@@ -27,10 +27,10 @@ public class Phone {
 
     public void setLocation(Point newLocation, Network network) {
         this.location = newLocation;
-        // Handle moving calls: attempt handoff if needed; otherwise disconnect when out of range
+        // Handle moving calls
         if (inCall) {
             if (connectedAntenna != null && connectedAntenna.phoneinRange(this)) {
-                return; // still within current antenna coverage
+                return; 
             }
 
             Antenna best = network.findNearestAntenna(this); // ensures capacity and range
@@ -43,7 +43,7 @@ public class Phone {
                 connectedAntenna = best;
                 System.out.println("Handoff performed to nearest antenna at " + best.getLocation());
             } else {
-                // Out of coverage/capacity: drop the call
+                // Out of coverage
                 if (connectedAntenna != null) {
                     connectedAntenna.decrementActiveCalls();
                 }
@@ -63,7 +63,7 @@ public class Phone {
     }
 
     public boolean canAcceptNewCall(Network network) {
-        if (inCall) return false; // already on a call
+        if (inCall) return false; 
         if (batteryLevel <= 0) return false;
         if (simCard == null || !simCard.isActivated()) return false;
         if (!simCard.checkCredit()) return false;
@@ -84,7 +84,7 @@ public class Phone {
     }
 
     public boolean receiveCall(Network network) {
-        if (inCall) return false; // reject if already connected
+        if (inCall) return false; 
         if (batteryLevel <= 0) return false;
         Antenna nearestAntenna = network.findNearestAntenna(this);
         if (nearestAntenna == null) return false; // out of range or no capacity
@@ -94,16 +94,14 @@ public class Phone {
         return true;
     }
 
-    /**
-     * Ends the active call, releasing antenna capacity.
-     */
+         
     public void endCall() {
         if (inCall) {
             if (connectedAntenna != null) {
-                connectedAntenna.decrementActiveCalls();
+                connectedAntenna.decrementActiveCalls(); 
             }
             connectedAntenna = null;
-            inCall = false;
+            inCall = false; // Ends the active call, releasing antenna capacity.
         }
     }
 
