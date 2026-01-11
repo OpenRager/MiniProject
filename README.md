@@ -1,6 +1,7 @@
 # Mini Project: Implementing a Mobile Communication System
 
-Course: Object-Oriented Programming 1 (2nd Year IT Engineering)
+Course: Object-Oriented Programming 1 (2nd Year Computer Engineering)
+Professor: K. Nasri
 
 This project models a simplified mobile communication system using core OOP principles. It focuses on class design, relationships, and enforcing real-world constraints such as network coverage, capacity limits, and mobility during calls.
 
@@ -109,5 +110,6 @@ src/
 - Anes HEDLI
 - Nidhal BECHNA
 - Abd El Bari ADJAL
+
 
 
