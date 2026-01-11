@@ -1,6 +1,3 @@
-/**
- * Represents a cellular antenna providing radio coverage.
- */
 public class Antenna {
     private Point location;
     private double coverageRadius;
@@ -46,40 +43,32 @@ public class Antenna {
         this.activeComms = activeComms;
     }
 
-    /**
-     * Returns true if the given phone is within the antenna's coverage area.
-     */
+    
+    
+    
     public boolean phoneinRange(Phone p) {
-        return location.distanceTo(p.getLocation()) <= coverageRadius;
+        return location.distanceTo(p.getLocation()) <= coverageRadius; // Returns true if the given phone is within the antenna's coverage area.
     }
 
-    /**
-     * Increments active calls if capacity allows; otherwise logs a message.
-     */
+  
     public void incrementActiveCalls() {
         if (activeComms < capacityLimit) {
-            activeComms++;
+            activeComms++; // Increments active calls if capacity allows
         } else {
-            System.out.println("Antenna capacity exceeded.");
+            System.out.println("Antenna capacity exceeded."); 
         }
     }
-
-    /**
-     * Decrements active calls if any are active; otherwise logs a message.
-     */
+     
     public void decrementActiveCalls() {
         if (activeComms > 0) {
-            activeComms--;
+            activeComms--; // Decrements active calls if any are active
         } else {
             System.out.println("There are no calls being made right now.");
         }
     }
 
-    /**
-     * Returns true if the antenna can accept at least one more call.
-     */
     public boolean canAcceptNewCall() {
-        return activeComms < capacityLimit;
+        return activeComms < capacityLimit; // Returns true if the antenna can accept at least one more call.
     }
 
     @Override
