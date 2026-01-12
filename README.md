@@ -1,21 +1,19 @@
 # Mini Project: Implementing a Mobile Communication System
 
+## Project Overview
 Course: Object-Oriented Programming 1 (2nd Year CS)
 
 Professor: K. Nasri
 
 This project models a simplified mobile communication system using core OOP principles. It focuses on class design, relationships, and enforcing real-world constraints such as network coverage, capacity limits, and mobility during calls.
 
-## Project Overview
-
-- Core Entities: `Phone`, `SimCard`, `Antenna`, `Network`, `Point`
 - Core Tasks:
   - Make/receive calls if rules are satisfied
   - Enforce antenna capacity and coverage
   - Disallow isolated antennas (must overlap with at least one other)
   - Support movement during calls with handoff; disconnect when out of coverage
 
-## System Requirements (Implemented)
+## Implementation
 
 1. Make a Call (Phone → Antenna via Network)
    - Phone has battery power
