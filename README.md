@@ -95,12 +95,12 @@ src/
 ```
 
 
-## Notes for Grading
+## Notes
 
-- Code includes constructors, getters, and setters
-- Logic is commented where it enforces the assignment rules
-- The network prevents isolated antennas (except the first to bootstrap)
-- Calls are capacity-aware and location-aware; moving calls attempt handoff
+- Code includes constructors, getters, setters and toString()
+- Logic is commented
+- The network prevents isolated antennas (except the first one to be initiated)
+- Calls are capacity-aware and location-aware
 
 
 ## Authors / Contributors
