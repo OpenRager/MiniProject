@@ -72,7 +72,7 @@ This project models a simplified mobile communication system using core OOP prin
 
 ## Demo Scenarios
 
-Use the main program in [src/CommunicationsSystem.java](src/CommunicationsSystem.java) (and [src/Main.java](src/Main.java) that delegates to it) to simulate common scenarios:
+Used the main program in [src/CommunicationsSystem.java](src/CommunicationsSystem.java) to simulate common scenarios:
 
 - Outgoing call with sufficient battery and credit
 - Movement within coverage (handoff between overlapping antennas)
