@@ -13,7 +13,7 @@ This project models a simplified mobile communication system using core OOP prin
   - Disallow isolated antennas (must overlap with at least one other)
   - Support movement during calls with handoff; disconnect when out of coverage
 
-## Implementation
+## Rules
 
 1. Make a Call (Phone → Antenna via Network)
    - Phone has battery power
@@ -32,7 +32,7 @@ This project models a simplified mobile communication system using core OOP prin
    - Only antennas connected to at least one other antenna (overlapping coverage) can be added
    - The first antenna is allowed (bootstrapping the network); subsequent antennas must overlap coverage with an existing one
 
-## Class Design
+## Implementation
 
 - `Point`
   - Immutable 2D point with `distanceTo(Point)`.
