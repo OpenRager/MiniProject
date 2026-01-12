@@ -88,7 +88,6 @@ MiniProject.iml
 src/
   Antenna.java
   CommunicationsSystem.java
-  Main.java
   Network.java
   Phone.java
   Point.java
